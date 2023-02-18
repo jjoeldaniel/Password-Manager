@@ -9,12 +9,8 @@ db.initialize()
 username = "kyle"
 password = "hunter1234"
 
-# Hash the password
-salt = bcrypt.gensalt()
-hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
-
 # Store the hashed password and retrieve it
-db.insert_master_password(username, hashed_password)
+db.insert_master_password(username, password)
 stored_hash = bytes(db.get_master_password(username)[0])
 
 # Verify the entered password against the stored hash
