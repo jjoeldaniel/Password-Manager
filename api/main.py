@@ -8,11 +8,13 @@ app = Flask(
 
 
 @app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def index():
     return render_template("index.html")
 
 
 @app.route('/', methods=['POST'])
+@app.route('/index', methods=['POST'])
 def get_account():
 
     username = request.get_json()["username"]
@@ -24,7 +26,6 @@ def get_account():
         if db.validate_password(username, password):
             return render_template('web.html')
         else:
-            # password is incorrect
             return render_template('index.html')
 
     else:
@@ -32,11 +33,11 @@ def get_account():
         return redirect(url_for('signup'))
 
 
-@app.route('/signup', methods=['GET'])
+@app.route('/signup')
 def signup():
     return render_template("signup.html")
 
 
-@app.route('/web', methods=['GET'])
+@app.route('/web')
 def web():
     return render_template("web.html")
