@@ -38,13 +38,12 @@
           })
           .then(response => response.json())
           .then(data => {
-            window.location.href = data.redirect;
+            window.location.replace(data.redirect);
             if (data.status != 'success') {
               console.error(data.message);
             }
           })
           .catch(error => console.error(error));
-          window.location.href = data.redirect;
         }
     }
   </script>
