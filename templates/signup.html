@@ -14,7 +14,7 @@
   </head>
 
   <script>
-    function checkPassword() {
+    function checkPassword(form) {
         password1 = form.password.value;
         password2 = form.confirm-password.value;
 
@@ -52,7 +52,7 @@
         </div>
         
         <div>
-          <button type="submit" onClick="checkPassword()">Sign Up</button>
+          <button type="submit" onClick="checkPassword(this)">Sign Up</button>
         </div>
       
     </form>
