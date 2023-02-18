@@ -28,9 +28,15 @@ def get_account():
             return render_template('index.html')
 
     else:
-        return render_template('signup.html')
+        # redirect to signup.html page
+        return redirect(url_for('signup'))
 
 
-@app.route('/add', methods=['POST'])
-def add_web():
-    return render_template("add.html")
+@app.route('/signup', methods=['GET'])
+def signup():
+    return render_template("signup.html")
+
+
+@app.route('/web', methods=['GET'])
+def web():
+    return render_template("web.html")
