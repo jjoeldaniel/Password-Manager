@@ -17,6 +17,26 @@ def connect():
     )
 
 
+def insert_password(password):
+    with connect().cursor as cur:
+        insert_password = f'''
+        INSERT INTO users (passwords) VALUES ({password})
+        '''
+
+        cur.execute(insert_password, (password,))
+        cur.commit()
+
+
+def insert_master_password(master_password):
+    with connect().cursor as cur:
+        insert_master_password = f'''
+        INSERT INTO users (master_password) VALUES ({master_password})
+        '''
+
+        cur.execute(insert_master_password, (master_password,))
+        cur.commit()
+
+
 def initialize():
     with connect().cursor as cur:
 
