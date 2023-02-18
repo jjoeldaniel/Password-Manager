@@ -23,6 +23,9 @@ def get_account():
         # validate password
         if db.validate_password(username, password):
             return render_template('web.html')
+        else:
+            # password is incorrect
+            return render_template('index.html')
     else:
         render_template('signup.html')
 
