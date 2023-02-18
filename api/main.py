@@ -14,24 +14,19 @@ def index():
 
 
 @app.route('/login', methods=['POST'])
-def get_account():
-
-    username = request.json().get('username')
-    password = request.json().get('password')
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
 
     if db.user_is_registered(username):
-
         # validate password
         if db.validate_password(username, password):
-            return render_template(
-                'web.html',
-                username=username,
-                passwords=db.get_passwords(username, password))
+            passwords = db.get_passwords(username, password)
+            return {'status': 'success', 'passwords': passwords, 'redirect': url_for('success')}
         else:
-            return render_template('index.html')
-
+            return {'status': 'error', 'message': 'Invalid username or password'}
     else:
-        return redirect(url_for('signup'))
+        return {'status': 'error', 'message': 'User not registered', 'redirect': url_for('signup')}
 
 
 @app.route('/signup')
