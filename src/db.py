@@ -1,3 +1,4 @@
+import bcrypt
 import psycopg2
 import os
 import urllib.parse as urlparse
@@ -25,8 +26,12 @@ def get_master_password(user_name):
             return cur.fetchone()
 
 
-def insert_password(user, hashed_password):
+def insert_password(user, password):
     with connect().cursor as cur:
+
+        # Hash the password
+        salt = bcrypt.gensalt()
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
 
         # Append the new password to the array of passwords
         insert_password = '''
@@ -40,23 +45,33 @@ def insert_password(user, hashed_password):
 def initialize_user(user_name, master_password):
     with connect() as conn:
         with conn.cursor() as cur:
+
+            # Hash the password
+            salt = bcrypt.gensalt()
+            hashed_password = bcrypt.hashpw(master_password.encode('utf-8'), salt)
+
             insert_master_password = '''
             INSERT INTO users (user_name, master_password) VALUES (%s, %s)
             ON CONFLICT (user_name) DO NOTHING
             '''
 
-            cur.execute(insert_master_password, (user_name, master_password))
+            cur.execute(insert_master_password, (user_name, hashed_password))
 
 
 def insert_master_password(user_name, master_password):
     with connect() as conn:
         with conn.cursor() as cur:
+
+            # Hash the password
+            salt = bcrypt.gensalt()
+            hashed_password = bcrypt.hashpw(master_password.encode('utf-8'), salt)
+
             insert_master_password = '''
             INSERT INTO users (user_name, master_password) VALUES (%s, %s)
             ON CONFLICT (user_name) DO UPDATE SET master_password = %s
             '''
 
-            cur.execute(insert_master_password, (user_name, master_password, master_password))
+            cur.execute(insert_master_password, (user_name, hashed_password, hashed_password))
 
 
 def initialize():
