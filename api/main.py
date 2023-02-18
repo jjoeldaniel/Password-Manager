@@ -21,10 +21,9 @@ def get_account():
     print(username)
     print(password)
     if db.user_is_registered(username):
-        return redirect(url_for('web.html'))
+        return render_template('web.html')
     else:
-        return redirect(url_for('signup.html'))
-        # password = request.get_json()["password"]
+        return render_template('signup.html')
 
 
 # web pages
