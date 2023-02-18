@@ -26,8 +26,9 @@ def get_account():
         else:
             # password is incorrect
             return render_template('index.html')
+
     else:
-        render_template('signup.html')
+        return render_template('signup.html')
 
 
 @app.route('/add', methods=['POST'])
