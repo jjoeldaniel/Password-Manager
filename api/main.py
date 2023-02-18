@@ -8,23 +8,34 @@ app = Flask(
 
 
 @app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def index():
     return render_template("index.html")
 
 
 @app.route('/', methods=['POST'])
+@app.route('/index', methods=['POST'])
 def get_account():
-    # if the combo doesnt exist
+
     username = request.get_json()["username"]
     password = request.get_json()["password"]
 
-    print(username)
-    print(password)
     if db.user_is_registered(username):
-        return redirect(url_for('web.html'))
+
+        # validate password
+        if db.validate_password(username, password):
+            return render_template('web.html')
+        else:
+            return render_template('index.html')
+
     else:
-        return redirect(url_for('signup.html'))
-        # password = request.get_json()["password"]
+        # redirect to signup.html page
+        return redirect(url_for('signup'))
+
+
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
 
 
 # web pages
@@ -33,6 +44,6 @@ def register():
     return render_template('signup.html')
 
 
-@app.route('/add', methods=['POST'])
-def add_web():
-    return render_template("add.html")
+@app.route('/web')
+def web():
+    return render_template("web.html")
