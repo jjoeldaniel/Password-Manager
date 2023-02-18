@@ -19,6 +19,37 @@ def connect() -> psycopg2.connect:
     )
 
 
+def validate_master_password(user_name, master_password) -> bool:
+    """
+    Returns True if the master password is correct
+    """
+
+    stored_hash = bytes(get_master_password(user_name)[0])
+    return bcrypt.checkpw(master_password.encode('utf-8'), stored_hash)
+
+
+def get_passwords(user_name, master_password) -> list:
+    """
+    Returns a list of passwords for the given user
+    """
+
+    if validate_master_password(
+        user_name=user_name,
+        master_password=master_password
+    ):
+        with connect() as conn:
+            with conn.cursor() as cur:
+
+                get_master_password = '''
+                SELECT passwords FROM users WHERE user_name = %s
+                '''
+
+                cur.execute(get_master_password, (user_name,))
+                return cur.fetchone()
+
+    return None
+
+
 def get_master_password(user_name) -> bytes:
     """
     Return the master password for the given user
