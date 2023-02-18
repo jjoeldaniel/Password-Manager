@@ -33,7 +33,7 @@ def insert_password(user, hashed_password):
         cur.execute(insert_password, (user, hashed_password))
 
 
-def insert_master_password(user_name, master_password):
+def initialize_user(user_name, master_password):
     with connect() as conn:
         with conn.cursor() as cur:
             insert_master_password = '''
@@ -41,6 +41,16 @@ def insert_master_password(user_name, master_password):
             '''
 
             cur.execute(insert_master_password, (user_name, master_password))
+            
+
+def insert_master_password(user_name, master_password):
+    with connect() as conn:
+        with conn.cursor() as cur:
+            insert_master_password = '''
+            INSERT INTO users (master_password) VALUES (%s) WHERE user_name = %s
+            '''
+
+            cur.execute(insert_master_password, (master_password, user_name))
 
 
 def initialize():
