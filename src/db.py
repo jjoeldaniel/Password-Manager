@@ -27,11 +27,14 @@ def get_master_password(user_name):
 
 def insert_password(user, hashed_password):
     with connect().cursor as cur:
+
+        # Append the new password to the array of passwords
         insert_password = '''
-        INSERT INTO users (user_name, passwords) VALUES (%s, %s)
+        UPDATE users SET passwords = array_append(passwords, %s) WHERE user_name = %s
+        ON CONFLICT (user_name) DO NOTHING
         '''
 
-        cur.execute(insert_password, (user, hashed_password))
+        cur.execute(insert_password, (hashed_password, user))
 
 
 def initialize_user(user_name, master_password):
@@ -49,11 +52,11 @@ def insert_master_password(user_name, master_password):
     with connect() as conn:
         with conn.cursor() as cur:
             insert_master_password = '''
-            INSERT users SET master_password = %s WHERE user_name = %s
+            INSERT INTO users (user_name, master_password) VALUES (%s, %s)
             ON CONFLICT (user_name) DO UPDATE SET master_password = %s
             '''
 
-            cur.execute(insert_master_password, (master_password, user_name))
+            cur.execute(insert_master_password, (user_name, master_password, master_password))
 
 
 def initialize():
