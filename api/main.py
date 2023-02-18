@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template, url_for
 import db
-app = Flask(__name__, template_folder='../templates')
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 
 @app.route('/', methods=['GET'])
@@ -12,6 +12,10 @@ def index():
 def get_account():
     # if the combo doesnt exist
     username = request.get_json()["username"]
+    password = request.get_json()["password"]
+
+    print(username)
+    print(password)
     if db.user_is_registered(username):
         return redirect(url_for('web.html'))
     else:
