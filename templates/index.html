@@ -35,6 +35,8 @@
 
         const username = loginForm.elements["username"];
         const password = loginForm.elements["password"];
+        console.log(username.value);
+        console.log(password.value)
 
         const formData = {
           username: username.value,
@@ -53,15 +55,6 @@
         // TODO: Use fetch() to send username and password to server for validation
       });
 
-      // Handle add password form submission
-      const addPasswordForm = document.getElementById("add-password-form");
-      addPasswordForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const newPassword = addPasswordForm.elements["new-password"].value;
-
-        // TODO: Use fetch() to send new password to server to be added
-      });
     </script>
   </body>
 </html>
