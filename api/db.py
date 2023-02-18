@@ -50,6 +50,26 @@ def get_passwords(user_name, master_password) -> list:
     return None
 
 
+def user_is_registered(user_name) -> bool:
+    """
+    Returns True if the user is registered
+    """
+
+    with connect() as conn:
+        with conn.cursor() as cur:
+
+            user_is_registered = '''
+            SELECT EXISTS(
+                SELECT 1
+                FROM users
+                WHERE user_name = %s
+            )
+            '''
+
+            cur.execute(user_is_registered, (user_name,))
+            return cur.fetchone()[0]
+
+
 def get_master_password(user_name) -> bytes:
     """
     Return the master password for the given user
