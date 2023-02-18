@@ -19,7 +19,9 @@ def get_master_password(user_name):
     with connect() as conn:
         with conn.cursor() as cur:
             get_master_password = '''
-            SELECT master_password FROM users WHERE user_name = %s
+            SELECT master_password
+            FROM users
+            WHERE user_name = %s
             '''
 
             cur.execute(get_master_password, (user_name,))
@@ -35,7 +37,9 @@ def insert_password(user, password):
 
         # Append the new password to the array of passwords
         insert_password = '''
-        UPDATE users SET passwords = array_append(passwords, %s) WHERE user_name = %s
+        UPDATE users
+        SET passwords = array_append(passwords, %s)
+        WHERE user_name = %s
         ON CONFLICT (user_name) DO NOTHING
         '''
 
@@ -48,11 +52,16 @@ def initialize_user(user_name, master_password):
 
             # Hash the password
             salt = bcrypt.gensalt()
-            hashed_password = bcrypt.hashpw(master_password.encode('utf-8'), salt)
+            hashed_password = bcrypt.hashpw(
+                master_password.encode('utf-8'),
+                salt
+            )
 
             insert_master_password = '''
-            INSERT INTO users (user_name, master_password) VALUES (%s, %s)
-            ON CONFLICT (user_name) DO NOTHING
+            INSERT INTO users (user_name, master_password)
+            VALUES (%s, %s)
+            ON CONFLICT (user_name)
+            DO NOTHING
             '''
 
             cur.execute(insert_master_password, (user_name, hashed_password))
@@ -64,14 +73,25 @@ def insert_master_password(user_name, master_password):
 
             # Hash the password
             salt = bcrypt.gensalt()
-            hashed_password = bcrypt.hashpw(master_password.encode('utf-8'), salt)
+            hashed_password = bcrypt.hashpw(
+                master_password.encode('utf-8'),
+                salt
+            )
 
             insert_master_password = '''
-            INSERT INTO users (user_name, master_password) VALUES (%s, %s)
-            ON CONFLICT (user_name) DO UPDATE SET master_password = %s
+            INSERT INTO users (user_name, master_password)
+            VALUES (%s, %s)
+            ON CONFLICT (user_name)
+            DO UPDATE SET master_password = %s
             '''
 
-            cur.execute(insert_master_password, (user_name, hashed_password, hashed_password))
+            cur.execute(
+                insert_master_password, (
+                    user_name,
+                    hashed_password,
+                    hashed_password
+                )
+            )
 
 
 def initialize():
