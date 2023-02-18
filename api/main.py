@@ -13,8 +13,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/', methods=['POST'])
-@app.route('/index', methods=['POST'])
+@app.route('/login')
 def get_account():
 
     username = request.get_json()["username"]
