@@ -13,11 +13,11 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def get_account():
 
-    username = request.get_json()["username"]
-    password = request.get_json()["password"]
+    username = request.json().get('username')
+    password = request.json().get('password')
 
     if db.user_is_registered(username):
 
@@ -31,7 +31,6 @@ def get_account():
             return render_template('index.html')
 
     else:
-        # redirect to signup.html page
         return redirect(url_for('signup'))
 
 
