@@ -25,6 +25,9 @@ class TestPasswordMethods(unittest.TestCase):
     def test_password(self):
         self.assertTrue(bcrypt.checkpw(password.encode('utf-8'), stored_hash))
 
+    def test_user_is_registered(self):
+        self.assertTrue(db.user_is_registered(username))
+
 
 if __name__ == '__main__':
     unittest.main()
