@@ -38,6 +38,12 @@ def signup():
     return render_template("signup.html")
 
 
+# web pages
+@app.route('/register')
+def register():
+    return render_template('signup.html')
+
+
 @app.route('/web')
 def web():
     return render_template("web.html")
