@@ -8,7 +8,8 @@ body {
   background-color: #f5f5f5;
   font-family: "Helvetica Neue", sans-serif;
   margin-left: 80px;
-  margin-right: 80px;
+  margin-right: 200px;
+
 }
 
 h1 {
@@ -102,6 +103,15 @@ button[type="submit"]:hover {
   background-color: #ffcdd2;
   color: #c62828;
 }
+
+.submit {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  text-align: center;
+  margin-top: 10px; 
+}
+
 @media only screen and (max-width: 500px) {
   .form-container,
   .table-container {
