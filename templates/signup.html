@@ -14,12 +14,18 @@
   </head>
 
   <script>
-    function checkPassword(form) {
-        password1 = form.password.value;
-        password2 = form.confirm-password.value;
+    let password1 = document.querySelector('#password').value;
+    let password2 = document.querySelector('#password2').value;
 
+
+      function checkPassword(form) {
         if (password1 !== password2 ) {
             alert("passwords did not match");
+            return false;
+        }
+        else {
+            window.location.href = 'index.html';
+            return true;
         }
         else {
           username = form.username.value;
@@ -61,11 +67,11 @@
             
             <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" autocomplete="on" required />
+            <input type="password" id="password" name="password" autocomplete="on" value = "" required />
             </div>
             
             <div>
-            <label for="confirm-password">Confirm Password:</label>
+            <label for="confirm-password" id = "password2" value = "">Confirm Password:</label>
             <input
                 type="password"
                 id="confirm-password"

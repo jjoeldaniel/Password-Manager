@@ -56,3 +56,5 @@ def register():
 @app.route('/web')
 def web():
     return render_template("web.html")
+
+
