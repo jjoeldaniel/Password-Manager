@@ -15,10 +15,10 @@
 
   <script>
     function checkPassword() {
-        password1 = document.getElementById("password");
-        password2 = document.getElementById("password-confirm");
+        password1 = form.password.value;
+        password2 = form.confirm-password.value;
 
-        if (password1 != password2 ) {
+        if (password1 !== password2 ) {
             alert("passwords did not match");
         }
     }
