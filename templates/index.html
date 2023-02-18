@@ -35,8 +35,6 @@
 
         const username = loginForm.elements["username"];
         const password = loginForm.elements["password"];
-        console.log(username.value);
-        console.log(password.value)
 
         const formData = {
           username: username.value,
@@ -46,12 +44,21 @@
         fetch("/login", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
-          body: JSON.stringify(formData),
-        });
-        // TODO: Use fetch() to send username and password to server for validation
+          body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          window.location.href = data.redirect;
+          if (data.status != 'success') {
+            console.error(data.message);
+          }
+        })
+        .catch(error => console.error(error));
+        window.location.href = data.redirect;
       });
+      
 
     </script>
   </body>
