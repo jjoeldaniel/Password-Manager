@@ -29,9 +29,21 @@ def login():
         return {'status': 'error', 'message': 'User not registered', 'redirect': url_for('signup')}
 
 
+@app.route('/register')
 @app.route('/signup')
 def signup():
-    return render_template("signup.html")
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if db.user_is_registered(username):
+            return {'status': 'error', 'message': 'User already registered'}
+        else:
+            db.register_user(username, password)
+            return {'status': 'success', 'redirect': url_for('web')}
+
+    else:
+        return render_template("signup.html")
 
 
 # web pages
