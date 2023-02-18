@@ -7,6 +7,18 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- List passwords if username is not null -->
+    { % if username is not none %}
+    <h2> Passwords </h2>
+    <ul>
+        { % for password in passwords %}
+        <li>
+            <p> { { password } } </p>
+        </li>
+        { % endfor %}
+    </ul>
+    { % endif %}
     
 </body>
 </html>

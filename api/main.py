@@ -24,7 +24,10 @@ def get_account():
 
         # validate password
         if db.validate_password(username, password):
-            return render_template('web.html')
+            return render_template(
+                'web.html',
+                username=username,
+                passwords=db.get_passwords(username, password))
         else:
             return render_template('index.html')
 
