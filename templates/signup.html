@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- joel stinky -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,21 +12,36 @@
     />
     <title>Sign Up</title>
   </head>
+
+  <script>
+    function checkPassword() {
+        password1 = document.getElementById("password");
+        password2 = document.getElementById("password-confirm");
+
+        if (password1 != password2 ) {
+            alert("passwords did not match");
+        }
+    }
+  </script>
+
   <body>
     <div class="container">
       <h1>Sign Up</h1>
+     
       <form>
         <div class="input-fields">
             <div>
             <label for="username" >Username:</label>
             <input type="text" id="username" name="username" required/>
             </div>
+            
             <div>
-            <label for="password">Password:</label>
+            <label for="password" name="pass1" id="password">Password:</label>
             <input type="password" id="password" name="password" required />
             </div>
+            
             <div>
-            <label for="confirm-password">Confirm Password:</label>
+            <label for="confirm-password" id="confirm-password" name="pass2">Confirm Password:</label>
             <input
                 type="password"
                 id="confirm-password"
@@ -34,10 +50,13 @@
             />
             </div>
         </div>
+        
         <div>
-          <button type="submit">Sign Up</button>
+          <button type="submit" onClick="checkPassword()">Sign Up</button>
         </div>
-      </form>
+      
+    </form>
     </div>
   </body>
 </html>
+<!-- joel smelly cat-->
