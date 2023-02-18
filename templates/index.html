@@ -12,7 +12,7 @@
   </head>
   <body>
     <h1>Password Manager</h1>
-    
+
     <div class="form">
       <h2>Login</h2>
       <form id="login-form">
@@ -25,9 +25,9 @@
         <button type="submit">Login</button>
       </form>
     </div>
-    
-    <button class='submit' type="submit" >Register</button>
-    
+
+    <button class="submit" type="submit">Register</button>
+
     <script>
       const loginForm = document.getElementById("login-form");
       loginForm.addEventListener("submit", (event) => {
@@ -40,7 +40,7 @@
           username: username.value,
           password: password.value,
         };
-        
+
         const ob1 = formData;
 
         fetch("/", {
