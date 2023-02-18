@@ -28,6 +28,10 @@ def get_account():
 
 
 # web pages
+@app.route('/register')
+def register():
+    return render_template('signup.html')
+
 
 @app.route('/add', methods=['POST'])
 def add_web():
