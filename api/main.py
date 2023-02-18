@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template, url_for
-import db
+import api.db
+
 app = Flask(
     __name__,
     template_folder='../templates',
