@@ -12,23 +12,22 @@
   </head>
   <body>
     <h1>Password Manager</h1>
-    <h2>Login</h2>
-    <form id="login-form">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required />
-      <br />
-      <label for="Password">Password</label>
-      <input type="password" id="password" name="password" required />
-      <br />
-      <button type="submit">Login</button>
-    </form>
-    <h2>Add Password</h2>
-    <form id="add-password-form">
-      <label for="new-password">New Password:</label>
-      <input type="password" id="new-password" name="new-password" required />
-      <br />
-      <button type="submit">Add Password</button>
-    </form>
+    
+    <div class="form">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <br />
+        <label for="Password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <br />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    
+    <button class='submit' type="submit" >Register</button>
+    
     <script>
       const loginForm = document.getElementById("login-form");
       loginForm.addEventListener("submit", (event) => {
