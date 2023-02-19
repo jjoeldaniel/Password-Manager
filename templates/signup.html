@@ -53,6 +53,7 @@
             <a id="web" href="/">Sign Up</a>
           </button>
         </div>
+
       </form>
     </div>
   </body>
@@ -62,7 +63,7 @@
       var password1 = document.getElementById("password").value;
       var password2 = document.getElementById("confirmpassword").value;
 
-      if (password1 != password2) {
+      if (password1 !== password2) {
         alert("Passwords did not match");
         document.getElementById("web").setAttribute("href", "signup");
         // window.location.href="signup.html"
