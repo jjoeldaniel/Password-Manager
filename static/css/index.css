@@ -50,8 +50,9 @@ h2 {
 form {
   border: 1px solid #ccc;
   width: 400px;
-  height: 200px;
+  height: 240px;
   border-radius: 5px;
+  padding: 5px;
 }
 
 label {
@@ -142,4 +143,12 @@ a {
   li {
     margin-bottom: 5px;
   }
+}
+
+.password {
+  margin: 0;
+}
+
+.submit {
+  padding: 15px;
 }
