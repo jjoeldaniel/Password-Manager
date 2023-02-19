@@ -66,21 +66,22 @@ button[type="submit"]:hover {
   background: linear-gradient(to right, #0072ff, #00c6ff);
 }
 
-.success,
+.success {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
 .error {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
-}
-
-.success {
-  background-color: #c8e6c9;
-  color: #2e7d32;
-}
-
-.error {
   background-color: #ffcdd2;
   color: #c62828;
 }
