@@ -69,8 +69,6 @@ input {
   font-size: 16px;
 }
 
-
-
 button[type="submit"] {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: #fff;
@@ -118,10 +116,29 @@ a {
   color: white;
 }
 
-@media only screen and (max-width: 500px) {
-  .form-container,
-  .table-container {
+@media (max-width: 768px) {
+  .container {
     max-width: 100%;
-    width: 100%;
+    border-radius: 0;
+    padding: 10px;
+  }
+
+  header {
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .success,
+  .error {
+    margin-bottom: 10px;
+  }
+
+  ul {
+    padding: 0 10px;
+  }
+
+  li {
+    margin-bottom: 5px;
   }
 }
