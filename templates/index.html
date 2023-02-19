@@ -25,9 +25,11 @@
         <button type="submit">Login</button>
       </form>
     </div>
-    
-    <button class='submit' type="submit"><a href="register">Register</a></button>
-    
+
+    <button class="submit" type="submit">
+      <a href="signup.html">Register</a>
+    </button>
+
     <script>
       const loginForm = document.getElementById("login-form");
       loginForm.addEventListener("submit", (event) => {
@@ -44,22 +46,20 @@
         fetch("/login", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(formData),
         })
-        .then(response => response.json())
-        .then(data => {
-          window.location.href = data.redirect;
-          if (data.status != 'success') {
-            console.error(data.message);
-          }
-        })
-        .catch(error => console.error(error));
+          .then((response) => response.json())
+          .then((data) => {
+            window.location.href = data.redirect;
+            if (data.status != "success") {
+              console.error(data.message);
+            }
+          })
+          .catch((error) => console.error(error));
         window.location.href = data.redirect;
       });
-      
-
     </script>
   </body>
 </html>
