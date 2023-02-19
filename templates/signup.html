@@ -12,7 +12,6 @@
     />
     <title>Sign Up</title>
   </head>
-
   <body>
     <div class="container">
       <h1>Sign Up</h1>
@@ -37,20 +36,20 @@
           </div>
 
           <div>
-            <label for="confirm-password" id="password2" value=""
-              >Confirm Password:</label
-            >
+            <label for="confirmpassword">Confirm Password:</label>
             <input
               type="password"
-              id="confirm-password"
-              name="confirm-password"
+              id="confirmpassword"
+              name="confirmpassword"
               autocomplete="on"
+              value=""
               required
             />
           </div>
         </div>
 
         <div>
+          <<<<<<< HEAD
           <button type="submit">Sign Up</button>
           <script>
             function index() {
@@ -58,42 +57,27 @@
             }
           </script>
           <button type="submit" onclick="index()">Log In</button>
+          =======
+          <button type="submit" onClick="checkPassword()">
+            <a id="web" href="/">Sign Up</a>
+          </button>
+          >>>>>>> 71ff295a19ac7104333366701562bc616288fc2b
         </div>
       </form>
     </div>
-    <script>
-      function checkPassword(form) {
-        let password1 = form["password"].value;
-        let password2 = form["confirm-password"].value;
-
-        if (password1 !== password2) {
-          alert("Passwords did not match");
-          return false;
-        } else {
-          const formData = {
-            username: form.username.value,
-            password: password1,
-          };
-
-          fetch("/signup", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              window.location.replace(data.redirect);
-              if (data.status != "success") {
-                console.error(data.message);
-              }
-            })
-            .catch((error) => console.error(error));
-        }
-        return false;
-      }
-    </script>
   </body>
+
+  <script>
+    function checkPassword() {
+      var password1 = document.getElementById("password").value;
+      var password2 = document.getElementById("confirmpassword").value;
+
+      if (password1 != password2) {
+        alert("Passwords did not match");
+        document.getElementById("web").setAttribute("href", "signup");
+        // window.location.href="signup.html"
+      }
+    }
+  </script>
 </html>
 <!-- joel smelly cat-->
