@@ -92,7 +92,7 @@ def insert_password(user, password) -> None:
     Insert a new password for the given user
     """
 
-    with connect().cursor as cur:
+    with connect().cursor() as cur:
 
         # Hash the password
         salt = bcrypt.gensalt()
